@@ -171,12 +171,8 @@ func HTTPRequest(ctx context.Context, method, url string, headers map[string]str
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Accept", "application/json")
 
-	if headers != nil {
-
-		for k, v := range headers {
-
-			req.Header.Set(k, v)
-		}
+	for k, v := range headers {
+		req.Header.Set(k, v)
 	}
 
 	resp, err := NewNetClient().Do(req)
