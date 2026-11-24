@@ -12,6 +12,11 @@ import (
 )
 
 // Deprecated: please use PaginateDataWithContext
+func GetVueTableData(db *sql.DB, paginator models.Paginator) models.Pagination {
+	return GetVueTableDataWithContext(context.Background(), db, paginator)
+}
+
+// Deprecated: please use PaginateDataWithContext
 func GetVueTableDataWithContext(ctx context.Context, db *sql.DB, paginator models.Paginator) models.Pagination {
 
 	search := paginator.VueTable
