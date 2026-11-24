@@ -29,7 +29,7 @@ func GetString(payload map[string]interface{}, name string, defaults string) (st
 
 	if payload[name] == nil {
 
-		return defaults, errors.New(fmt.Sprintf("value %s not set", name))
+		return defaults, fmt.Errorf("value %s not set", name)
 	}
 
 	v := reflect.ValueOf(payload[name])
@@ -65,7 +65,7 @@ func GetFloat(payload map[string]interface{}, name string, defaults float64) (fl
 
 	if payload[name] == nil {
 
-		return defaults, errors.New(fmt.Sprintf("value %s not set", name))
+		return defaults, fmt.Errorf("value %s not set", name)
 	}
 
 	v := reflect.ValueOf(payload[name])
@@ -73,7 +73,7 @@ func GetFloat(payload map[string]interface{}, name string, defaults float64) (fl
 	switch v.Kind() {
 
 	case reflect.Invalid:
-		return defaults, errors.New(fmt.Sprintf("value %s not set", name))
+		return defaults, fmt.Errorf("value %s not set", name)
 
 	case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
 		return float64(v.Int()), nil
@@ -86,7 +86,7 @@ func GetFloat(payload map[string]interface{}, name string, defaults float64) (fl
 	// ...floating-point and complex cases omitted for brevity...
 	case reflect.Bool:
 		//return strconv.FormatBool(v.Bool())
-		return defaults, errors.New(fmt.Sprintf("value %s not set", name))
+		return defaults, fmt.Errorf("value %s not set", name)
 
 	case reflect.String:
 		val, err := strconv.ParseFloat(v.String(), 64)
@@ -100,7 +100,7 @@ func GetFloat(payload map[string]interface{}, name string, defaults float64) (fl
 
 	default: // reflect.Array, reflect.Struct, reflect.Interface
 		//return v.Type().String() + " value"
-		return defaults, errors.New(fmt.Sprintf("value %s not set", name))
+		return defaults, fmt.Errorf("value %s not set", name)
 	}
 
 }
@@ -109,7 +109,7 @@ func GetInt64(payload map[string]interface{}, name string, defaults int64) (int6
 
 	if payload[name] == nil {
 
-		return defaults, errors.New(fmt.Sprintf("value %s not set", name))
+		return defaults, fmt.Errorf("value %s not set", name)
 	}
 
 	v := reflect.ValueOf(payload[name])
@@ -117,7 +117,7 @@ func GetInt64(payload map[string]interface{}, name string, defaults int64) (int6
 	switch v.Kind() {
 
 	case reflect.Invalid:
-		return defaults, errors.New(fmt.Sprintf(notSetError))
+		return defaults, fmt.Errorf(notSetError)
 
 	case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
 		return v.Int(), nil
@@ -130,7 +130,7 @@ func GetInt64(payload map[string]interface{}, name string, defaults int64) (int6
 	// ...floating-point and complex cases omitted for brevity...
 	case reflect.Bool:
 		//return strconv.FormatBool(v.Bool())
-		return defaults, errors.New(fmt.Sprintf(notSetError))
+		return defaults, fmt.Errorf(notSetError)
 
 	case reflect.String:
 		val, err := strconv.ParseInt(v.String(), 10, 64)
@@ -144,7 +144,7 @@ func GetInt64(payload map[string]interface{}, name string, defaults int64) (int6
 
 	default: // reflect.Array, reflect.Struct, reflect.Interface
 		//return v.Type().String() + " value"
-		return defaults, errors.New(fmt.Sprintf(notSetError))
+		return defaults, fmt.Errorf(notSetError)
 	}
 
 }
@@ -161,7 +161,7 @@ func GetBool(payload map[string]interface{}, name string, defaults bool) (bool, 
 	switch v.Kind() {
 
 	case reflect.Invalid:
-		return defaults, errors.New(fmt.Sprintf(notSetError))
+		return defaults, fmt.Errorf(notSetError)
 
 	case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
 		return v.Int() == 1, nil
@@ -185,7 +185,7 @@ func GetBool(payload map[string]interface{}, name string, defaults bool) (bool, 
 		return val == 1, nil
 
 	default:
-		return defaults, errors.New(fmt.Sprintf(notSetError))
+		return defaults, fmt.Errorf(notSetError)
 	}
 }
 
@@ -193,7 +193,7 @@ func GetInt64Value(payload interface{}, defaults int64) (int64, error) {
 
 	if payload == nil {
 
-		return defaults, errors.New(fmt.Sprintf(notSetError))
+		return defaults, fmt.Errorf(notSetError)
 	}
 
 	v := reflect.ValueOf(payload)
@@ -201,7 +201,7 @@ func GetInt64Value(payload interface{}, defaults int64) (int64, error) {
 	switch v.Kind() {
 
 	case reflect.Invalid:
-		return defaults, errors.New(fmt.Sprintf(notSetError))
+		return defaults, fmt.Errorf(notSetError)
 
 	case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
 		return v.Int(), nil
@@ -213,7 +213,7 @@ func GetInt64Value(payload interface{}, defaults int64) (int64, error) {
 		return int64(v.Uint()), nil
 	// ...floating-point and complex cases omitted for brevity...
 	case reflect.Bool:
-		return defaults, errors.New(fmt.Sprintf(notSetError))
+		return defaults, fmt.Errorf(notSetError)
 
 	case reflect.String:
 		val, err := strconv.ParseInt(v.String(), 10, 64)
@@ -227,7 +227,7 @@ func GetInt64Value(payload interface{}, defaults int64) (int64, error) {
 
 	default: // reflect.Array, reflect.Struct, reflect.Interface
 		//return v.Type().String() + " value"
-		return defaults, errors.New(fmt.Sprintf(notSetError))
+		return defaults, fmt.Errorf(notSetError)
 	}
 
 }
