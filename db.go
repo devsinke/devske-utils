@@ -527,7 +527,7 @@ func (a *Db) FetchOneWithContext() *sql.Row {
 
 	a.removeValidParameters()
 
-	if a.Params == nil || len(a.Params) == 0 {
+	if len(a.Params) == 0 {
 
 		if a.DBConn != nil {
 
@@ -580,7 +580,7 @@ func (a *Db) FetchOneSlaveWithContext() *sql.Row {
 
 	a.removeValidParameters()
 
-	if a.Params == nil || len(a.Params) == 0 {
+	if len(a.Params) == 0 {
 
 		if a.DBConnSlave != nil {
 
@@ -626,7 +626,7 @@ func (a *Db) FetchWithContext() (*sql.Rows, error) {
 
 	a.removeValidParameters()
 
-	if a.Params == nil || len(a.Params) == 0 {
+	if len(a.Params) == 0 {
 
 		if a.DBConn != nil {
 
@@ -702,7 +702,7 @@ func (a *Db) FetchSlaveWithContext() (*sql.Rows, error) {
 
 	a.removeValidParameters()
 
-	if a.Params == nil || len(a.Params) == 0 {
+	if len(a.Params) == 0 {
 
 		if a.DBConnSlave != nil {
 
@@ -757,7 +757,7 @@ func (a *Db) SetQuery(query string) {
 	a.Query = query
 }
 
-func (a *Db) setResults(result ...interface{}) {
+func (a *Db) SetResults(result ...interface{}) {
 
 	a.Result = result
 }

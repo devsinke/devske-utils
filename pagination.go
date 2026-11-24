@@ -104,7 +104,7 @@ func PaginateDataWithContext(ctx context.Context, db *sql.DB, paginator models.P
 	if isDebug != 0 {
 
 		log.Printf("Count Query | %s", countQuery)
-		if params != nil && len(params) > 0 {
+		if len(params) > 0 {
 			log.Printf("Params | %v", params...)
 		}
 
@@ -113,7 +113,7 @@ func PaginateDataWithContext(ctx context.Context, db *sql.DB, paginator models.P
 	if isDebug != 0 {
 
 		log.Printf("Count Query | %s", countQuery)
-		if params != nil && len(params) > 0 {
+		if len(params) > 0 {
 			log.Printf("Params | %v", params...)
 		}
 
@@ -318,7 +318,7 @@ func DownloadPaginatedDataWithContext(ctx context.Context, db *sql.DB, paginator
 	if isDebug != 0 {
 
 		log.Printf("Count Query | %s", countQuery)
-		if params != nil && len(params) > 0 {
+		if len(params) > 0 {
 			log.Printf("Params | %v", params...)
 		}
 
@@ -457,7 +457,7 @@ func PaginateDataSlaveWithContext(ctx context.Context, dbSlave *sql.DB, paginato
 	if isDebug != 0 {
 
 		log.Printf("Count Query | %s", countQuery)
-		if params != nil && len(params) > 0 {
+		if len(params) > 0 {
 			log.Printf("Params | %v", params...)
 		}
 
@@ -466,7 +466,7 @@ func PaginateDataSlaveWithContext(ctx context.Context, dbSlave *sql.DB, paginato
 	if isDebug != 0 {
 
 		log.Printf("Count Query | %s", countQuery)
-		if params != nil && len(params) > 0 {
+		if len(params) > 0 {
 			log.Printf("Params | %v", params...)
 		}
 
@@ -660,7 +660,7 @@ func DownloadPaginatedDataSlaveWithContext(ctx context.Context, dbSlave *sql.DB,
 	if isDebug != 0 {
 
 		log.Printf("Count Query | %s", countQuery)
-		if params != nil && len(params) > 0 {
+		if len(params) > 0 {
 			log.Printf("Params | %v", params...)
 		}
 

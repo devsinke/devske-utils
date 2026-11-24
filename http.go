@@ -63,13 +63,9 @@ func HTTPPost(url string, headers map[string]string, payload interface{}) (httpS
 	logHeaders["Content-Type"] = "application/json"
 	logHeaders["Accept"] = "application/json"
 
-	if headers != nil {
-
-		for k, v := range headers {
-
-			req.Header.Set(k, v)
-			logHeaders[k] = v
-		}
+	for k, v := range headers {
+		req.Header.Set(k, v)
+		logHeaders[k] = v
 	}
 
 	resp, err := NewNetClient().Do(req)
@@ -114,13 +110,9 @@ func HTTPPostWithContext(ctx context.Context, url string, headers map[string]str
 	logHeaders["Content-Type"] = "application/json"
 	logHeaders["Accept"] = "application/json"
 
-	if headers != nil {
-
-		for k, v := range headers {
-
-			req.Header.Set(k, v)
-			logHeaders[k] = v
-		}
+	for k, v := range headers {
+		req.Header.Set(k, v)
+		logHeaders[k] = v
 	}
 
 	resp, err := NewNetClient().Do(req)
@@ -240,13 +232,9 @@ func HTTPGet(remoteURL string, headers map[string]string, payload map[string]str
 	logHeaders["Content-Type"] = "application/json"
 	logHeaders["Accept"] = "application/json"
 
-	if headers != nil {
-
-		for k, v := range headers {
-
-			req.Header.Set(k, v)
-			logHeaders[k] = v
-		}
+	for k, v := range headers {
+		req.Header.Set(k, v)
+		logHeaders[k] = v
 	}
 
 	resp, err := NewNetClient().Do(req)
@@ -303,13 +291,9 @@ func HTTPGetWithContext(ctx context.Context, remoteURL string, headers map[strin
 	logHeaders["Content-Type"] = "application/json"
 	logHeaders["Accept"] = "application/json"
 
-	if headers != nil {
-
-		for k, v := range headers {
-
-			req.Header.Set(k, v)
-			logHeaders[k] = v
-		}
+	for k, v := range headers {
+		req.Header.Set(k, v)
+		logHeaders[k] = v
 	}
 
 	resp, err := NewNetClient().Do(req)
@@ -336,14 +320,8 @@ func HTTPFormPost(endpoint string, headers map[string]string, payload map[string
 
 	var stringPayload []string
 
-	if payload != nil {
-
-		for key, value := range payload {
-
-			stringPayload = append(stringPayload, fmt.Sprintf("%s=%v", key, value))
-
-		}
-
+	for key, value := range payload {
+		stringPayload = append(stringPayload, fmt.Sprintf("%s=%v", key, value))
 	}
 
 	requestPayload := strings.NewReader(strings.Join(stringPayload, "&"))
@@ -360,13 +338,9 @@ func HTTPFormPost(endpoint string, headers map[string]string, payload map[string
 	logHeaders := make(map[string]string)
 	logHeaders["Content-Type"] = "application/x-www-form-urlencoded"
 
-	if headers != nil {
-
-		for k, v := range headers {
-
-			req.Header.Set(k, v)
-			logHeaders[k] = v
-		}
+	for k, v := range headers {
+		req.Header.Set(k, v)
+		logHeaders[k] = v
 	}
 
 	resp, err := NewNetClient().Do(req)
@@ -395,14 +369,8 @@ func HTTPFormPostWithContext(ctx context.Context, endpoint string, headers map[s
 
 	var stringPayload []string
 
-	if payload != nil {
-
-		for key, value := range payload {
-
-			stringPayload = append(stringPayload, fmt.Sprintf("%s=%v", key, value))
-
-		}
-
+	for key, value := range payload {
+		stringPayload = append(stringPayload, fmt.Sprintf("%s=%v", key, value))
 	}
 
 	requestPayload := strings.NewReader(strings.Join(stringPayload, "&"))
@@ -419,13 +387,9 @@ func HTTPFormPostWithContext(ctx context.Context, endpoint string, headers map[s
 	logHeaders := make(map[string]string)
 	logHeaders["Content-Type"] = "application/x-www-form-urlencoded"
 
-	if headers != nil {
-
-		for k, v := range headers {
-
-			req.Header.Set(k, v)
-			logHeaders[k] = v
-		}
+	for k, v := range headers {
+		req.Header.Set(k, v)
+		logHeaders[k] = v
 	}
 
 	resp, err := NewNetClient().Do(req)
@@ -448,7 +412,7 @@ func HTTPFormPostWithContext(ctx context.Context, endpoint string, headers map[s
 	return st, string(body)
 }
 
-func logRequest(method, endpoint string, requestHeaders map[string]string, requestBody interface{},
+func LogRequest(method, endpoint string, requestHeaders map[string]string, requestBody interface{},
 	responseStatus int, responseHeader http.Header, responseBody string) {
 
 	if os.Getenv("debug") == "1" || os.Getenv("DEBUG") == "1" {

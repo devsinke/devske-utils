@@ -332,7 +332,7 @@ func CronString(repeatType string, repeatIntervalValue string, date string, send
 
 		// expected format
 		// * * * * *
-		cron := fmt.Sprintf("* * * * *")
+		cron := "* * * * *"
 		return &cron, nil
 
 	}
@@ -1027,53 +1027,30 @@ func getMonthNumber(monthName string) int {
 	month := strings.ToLower(monthName)
 
 	switch month {
-	case "jan":
-	case "january":
+	case "jan", "january":
 		return 1
-		break
-	case "feb":
-	case "february":
+	case "feb", "february":
 		return 2
-		break
-	case "mar":
-	case "march":
+	case "mar", "march":
 		return 3
-		break
-	case "apr":
-	case "april":
+	case "apr", "april":
 		return 4
-		break
 	case "may":
 		return 5
-		break
-	case "jun":
-	case "june":
+	case "jun", "june":
 		return 6
-		break
-	case "jul":
-	case "july":
+	case "jul", "july":
 		return 7
-		break
-	case "aug":
-	case "august":
+	case "aug", "august":
 		return 8
-		break
-	case "sep":
-	case "september":
+	case "sep", "september":
 		return 9
-		break
-	case "oct":
-	case "october":
+	case "oct", "october":
 		return 10
-		break
-	case "nov":
-	case "november":
+	case "nov", "november":
 		return 11
-		break
-	case "dec":
-	case "december":
+	case "dec", "december":
 		return 12
-		break
 	}
 
 	return 0
@@ -1091,47 +1068,20 @@ func getDayOfWeekNumber(dayOfWeek string) int {
 	dayOfWeek = strings.ToLower(RemoveSpaces(dayOfWeek))
 
 	switch dayOfWeek {
-	case "sun":
+	case "sun", "sunday":
 		return 1
-	case "sunday":
-		return 1
-		break
-
-	case "mon":
+	case "mon", "monday":
 		return 2
-	case "monday":
-		return 2
-		break
-
-	case "tue":
+	case "tue", "tuesday":
 		return 3
-	case "tuesday":
-		return 3
-		break
-
-	case "wed":
+	case "wed", "wednesday":
 		return 4
-	case "wednesday":
-		return 4
-		break
-
-	case "thu":
+	case "thu", "thursday":
 		return 5
-	case "thursday":
-		return 5
-		break
-
-	case "fri":
+	case "fri", "friday":
 		return 6
-	case "friday":
-		return 6
-		break
-
-	case "sat":
+	case "sat", "saturday":
 		return 7
-	case "saturday":
-		return 7
-		break
 	}
 
 	return 0
